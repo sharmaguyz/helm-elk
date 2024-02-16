@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kibana
+  annotations:
+    #nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: chart-example.local
+    http:
+      paths:
+      - backend:
+          service:
+            name: kibana-kibana
+            port:
+              number: 5601
+        pathType: ImplementationSpecific
